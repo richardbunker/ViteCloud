@@ -1,36 +1,19 @@
-import { Login } from "./pages/auth/Login";
-import { Logout } from "./pages/auth/Logout";
-import { Register } from "./pages/auth/Register";
-import { Home } from "./pages/Home";
-import { Landing } from "./pages/Landing";
+import { LoginPage } from "./pages/auth/Login";
+import { LogoutPage } from "./pages/auth/Logout";
+import { RegisterPage } from "./pages/auth/Register";
+import { HomePage } from "./pages/Home";
+import { LandingPage } from "./pages/Landing";
 import Router, { Route } from "./Router";
-const App = () => {
+
+export default function App() {
+  // Define the routes for the SPA
   const routes: Route[] = [
-    { path: "/", component: <Landing /> },
-    { path: "/home", component: <Home />, requiresAuth: true },
-    { path: "/login", component: <Login /> },
-    { path: "/register", component: <Register /> },
-    { path: "/logout", component: <Logout />, requiresAuth: true },
+    { path: "/", component: <LandingPage /> },
+    { path: "/home", component: <HomePage />, requiresAuth: true },
+    { path: "/login", component: <LoginPage routeOnSuccess="/home" /> },
+    { path: "/register", component: <RegisterPage /> },
+    { path: "/logout", component: <LogoutPage />, requiresAuth: true },
   ];
 
-  return (
-    <div className="min-h-screen flex flex-col w-full">
-      <nav className="w-full bg-black h-16 text-white flex items-center justify-end space-x-2 px-4">
-        {window.localStorage.getItem("jwt") ? (
-          <>
-            <a href="/logout">Logout</a>
-          </>
-        ) : (
-          <>
-            {" "}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-          </>
-        )}
-      </nav>
-      <Router routes={routes} />
-    </div>
-  );
-};
-
-export default App;
+  return <Router routes={routes} />;
+}

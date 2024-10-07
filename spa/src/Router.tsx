@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Error404 } from "./pages/error/404";
 
 export interface Route {
   path: string;
@@ -33,11 +34,7 @@ const Router = ({ routes }: RouterProps) => {
     }
   }
 
-  return (
-    <main className="flex-1 h-full flex">
-      {activeRoute ? activeRoute.component : <h1>404 - Not Found</h1>}
-    </main>
-  );
+  return activeRoute ? activeRoute.component : <Error404 />;
 };
 
 export default Router;
