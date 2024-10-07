@@ -1,0 +1,4 @@
+service_name         = "webapp-app1"
+cost_center          = "webapp-app1-cc"
+domain_name          = "your-domain.com"
+app_name             = "webapp-app1"
